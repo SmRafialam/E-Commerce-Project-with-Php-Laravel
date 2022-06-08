@@ -1,7 +1,7 @@
 @extends('backend.mastertemplate.template')
 
 @section('content')
-
+@csrf
 <div class="br-pagetitle">
         <i class="icon ion-ios-home-outline"></i>
         <div>

@@ -9,7 +9,6 @@
           <p class="mg-b-0">Manage your all Products</p>
         </div>
       </div>
-
       <div class="br-pagebody">
         <div class="row row-sm">
           <div class="col-sm-12">
@@ -54,24 +53,24 @@
                             </td>
                         </tr>
                         <div class="modal fade" id="delete{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Confirmation Message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure want to delete this product?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <a href="{{ Route('delete',$data->id) }}" class="btn btn-danger">Confirm</a>
-      </div>
-    </div>
-  </div>
-</div>
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Confirmation Message</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              Are you sure want to delete this product?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                              <a href="{{ Route('delete',$data->id) }}" class="btn btn-danger">Confirm</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                         @php $sl++; @endphp
                         @endforeach
                     </tbody>

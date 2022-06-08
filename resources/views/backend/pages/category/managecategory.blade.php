@@ -14,7 +14,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="addCategory">Add Category</h5>
+            <h5 class="modal-title">Add Category</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -27,16 +27,16 @@
             </div>
             <div class="form-group">
                 <label for="">Description</label>
-                <textarea class="des form-control" cols="30" rows="4"></textarea>
+                <textarea class="form-control description" cols="30" rows="4"></textarea>
                 <span class="text-danger desError"></span>
             </div>
             <div class="form-group">
-                <label for="">Tags</label>
+                <label for="tag">Tags</label>
                 <input type="text" class="tag form-control" placeholder="Enter Tags Name">
                 <span class="text-danger tagError"></span>
             </div>
             <div class="form-group">
-                <label for="">Status</label>
+                <label for="status">Status</label>
                 <select class="status form-control">
                     <option value="1">------Select Status------</option>
                     <option value="1">Active</option>
@@ -46,7 +46,52 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Add Category</button>
+            <button type="button" class="btn btn-primary addCategory">Add Category</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Edit Category Modal -->
+    <div class="modal fade" id="catEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        <div class="modalmsg"></div>
+        <div class="form-group">
+                <label for="">Category Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Enter Category Name">
+                <span class="text-danger nameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <textarea id="description" class="form-control" cols="30" rows="4"></textarea>
+                <span class="text-danger desError"></span>
+            </div>
+            <div class="form-group">
+                <label for="tag">Tags</label>
+                <input type="text" id="tag" class="form-control" placeholder="Enter Tags Name">
+                <span class="text-danger tagError"></span>
+            </div>
+            <div class="form-group">
+                <label for="">Status</label>
+                <select id="status" class="form-control">
+                <option value="1" id="statusvalue"></option>
+                <option value="1">Active</option>
+                <option value="2">Inctive</option>
+                </select>
+            </div>
+        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Update Category</button>
         </div>
         </div>
     </div>
@@ -58,8 +103,9 @@
               <div class="card p-3 shadow-base">
                   <div class="row p-3 justify-content-between px-2">
                       <h4 class="mx-2">All Category</h4>
-                      <button data-toggle="modal" data-target="#addCategory" class="btn btn-sm btn-info mx-2 addCategory "><i class="fa fa-plus"></i> Add Category</button>
+                      <button data-toggle="modal" data-target="#addCategory" class="btn btn-sm btn-info mx-2" id="addCategory"><i class="fa fa-plus"></i> Add Category</button>
                   </div>
+                  <div class="msg"></div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -71,9 +117,9 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody">
 
-                        <tr>
+                        <!-- <tr>
                             <td> #01 </td>
                             <td> Man </td>
                             <td> This is Man & Children category </td>
@@ -83,7 +129,7 @@
                                  <button class="btn btn-sm btn-danger" data-toggle="modal" data-target=""> <i class="fa fa-trash"></i> </button> 
                             </td>
                         </tr>
-                        
+                         -->
                     </tbody>
                 </table>
               </div>

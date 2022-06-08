@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\validator;
-use Illuminate\Database\Eloquent\Model\Category;
+use App\Models\Backend\Category;
 
 class CategoryController extends Controller
 {
@@ -29,6 +29,16 @@ class CategoryController extends Controller
         //
     }
 
+    public function catshow()
+    {
+        $alldata = Category::all();
+        return response()->json([
+            'data'=>$alldata
+
+        ]);
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -39,7 +49,7 @@ class CategoryController extends Controller
     {
         $validator = validator::make($request->all(),[
             'name' => 'required',
-            'des' => 'required',
+            'description' => 'required',
             'tag' => 'required',
             
 
@@ -53,12 +63,12 @@ class CategoryController extends Controller
             else{
                 $category=new Category;
                 $category->name = $request->name;
-                $category->des = $request->des;
+                $category->description = $request->description;
                 $category->tag = $request->tag;
                 $category->status = $request->status;
                 $category->save();
                 return response()->json([
-                    'messages' => 'Category added successfully',
+                    'message' => 'Category added successfully',
                 ]);
 
             }
@@ -72,20 +82,26 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-        //
+        $alldata = Category::find($id);
+        if($alldata){
+        return response()->json([
+            'data'=>$alldata
+
+        ]);
+    }
+    else{
+        return response()->json([
+            'status' => '400',
+            'error'=>'Data Not Found'
+
+        ]);
+
+    }
+        
     }
 
     /**
