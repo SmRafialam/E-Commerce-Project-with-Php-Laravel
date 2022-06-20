@@ -57,14 +57,14 @@ Route::group(['prefix'=>'/admin'],function(){
 
         Route::get('/catdelete/{id}','App\Http\Controllers\Backend\CategoryController@destroy')->middleware(['auth'])->name('catdelete');
     });
-
+    
     //for Subcategory
     Route::group(['prefix'=>'/subcategory'],function(){
-        Route::post('/subcatstore','App\Http\Controllers\Backend\SubcategoryController@store')->middleware(['auth'])->name('subcategorystore');
+        Route::post('/subcategorystore','App\Http\Controllers\Backend\SubcategoryController@store')->middleware(['auth'])->name('subcategorystore');
 
-        Route::get('/subcreate','App\Http\Controllers\Backend\SubcategoryController@create')->middleware(['auth'])->name('subcategorycreate');
+        Route::get('/subcategorycreate','App\Http\Controllers\Backend\SubcategoryController@create')->middleware(['auth'])->name('subcategorycreate');
 
-        Route::get('/submanage','App\Http\Controllers\Backend\SubcategoryController@index')->middleware(['auth'])->name('subcategorymanage');
+        Route::get('/subcategorymanage','App\Http\Controllers\Backend\SubcategoryController@index')->middleware(['auth'])->name('subcategorymanage');
 
         Route::get('/subcatedit/{id}','App\Http\Controllers\Backend\SubcategoryController@edit')->middleware(['auth'])->name('subcategory.edit');
 
@@ -73,6 +73,24 @@ Route::group(['prefix'=>'/admin'],function(){
         Route::post('/subupdate/{id}','App\Http\Controllers\Backend\SubcategoryController@update')->middleware(['auth'])->name('subcategory.update');
 
         Route::get('/subdelete/{id}','App\Http\Controllers\Backend\SubcategoryController@destroy')->middleware(['auth'])->name('subcategory.delete');
+    });
+
+    //for Items
+    Route::group(['prefix'=>'/items'],function(){
+        Route::post('/store','App\Http\Controllers\Backend\ItemsController@store')->middleware(['auth'])->name('items.store');
+
+        Route::get('/create','App\Http\Controllers\Backend\ItemsController@create')->middleware(['auth'])->name('items.create');
+
+        Route::get('/manage','App\Http\Controllers\Backend\ItemsController@index')->middleware(['auth'])->name('items.manage');
+
+        Route::get('/edit/{id}','App\Http\Controllers\Backend\ItemsController@edit')->middleware(['auth'])->name('items.edit');
+
+        Route::post('/update/{id}','App\Http\Controllers\Backend\ItemsController@update')->middleware(['auth'])->name('items.update');
+
+        Route::get('/delete/{id}','App\Http\Controllers\Backend\ItemsController@destroy')->middleware(['auth'])->name('items.delete');
+
+        Route::get('/gallerydelete/{id}','App\Http\Controllers\Backend\ItemsController@gallerydelete')->middleware(['auth'])->name('items.gallerydelete');
+
     });
 });
 

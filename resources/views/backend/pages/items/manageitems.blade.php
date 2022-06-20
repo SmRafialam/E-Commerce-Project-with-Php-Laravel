@@ -5,8 +5,8 @@
 <div class="br-pagetitle">
         <i class="icon ion-ios-home-outline"></i>
         <div>
-          <h4>Sub Categories</h4>
-          <p class="mg-b-0">Manage your all SubCategories</p>
+          <h4>Items</h4>
+          <p class="mg-b-0">Manage your all Items</p>
         </div>
       </div>
 
@@ -18,8 +18,8 @@
                     <thead>
                         <tr>
                             <th>#Sl</th>
-                            <th>Category Id</th>
-                            <th>Sub Category Name</th>
+                            <th>Item Code</th>
+                            <th>Items Name</th>
                             <th>Description</th>
                             <th>Image</th>
                             <th>Status</th>
@@ -28,14 +28,17 @@
                     </thead>
                     <tbody>
                         @php $sl=1; @endphp
-                        @foreach($subcat as $data)
+                        @foreach($items as $data)
                         
                         <tr>
                             <td> {{ $sl }} </td>
-                            <td> {{ $data->catId }} </td>
+                            <td> {{ $data->item_code }} </td>
                             <td> {{ $data->subCatName }} </td>
+                            <td> {{ $data->name }} </td>
                             <td> {{ $data->description }} </td>
-                            <td> <img height="80" src="{{ asset('backend/subcategoryimages/'.$data->image) }}" alt=""> </td>
+                            <td> {{ $data->pic }} </td>
+
+                            <td> <img height="80" src="{{ asset('backend/items/'.$data->pic) }}" alt=""> </td>
                             <td>
                                 @if($data->status==1)
                                 <span class="badge badge-info">Active</span>
@@ -43,7 +46,7 @@
                                 <span class="badge badge-danger">Inctive</span>
                                 @endif
                             </td>
-                            <td> <a href="{{ Route('subcategory.edit',$data->id) }}" class="btn btn-sm btn-info"> <i class="fa fa-edit"></i> </a> 
+                            <td> <a href="{{ Route('items.edit',$data->id) }}" class="btn btn-sm btn-info"> <i class="fa fa-edit"></i> </a> 
                                  <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete{{ $data->id }}"> <i class="fa fa-trash"></i> </button> 
                             </td>
                         </tr>

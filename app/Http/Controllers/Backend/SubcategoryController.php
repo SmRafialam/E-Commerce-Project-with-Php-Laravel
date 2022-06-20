@@ -20,7 +20,8 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        
+        $subcat=Subcategory::all();
+        return view("backend.pages.subcategory.managesubcategory",compact('subcat'));
     }
 
     /**
@@ -44,7 +45,6 @@ class SubcategoryController extends Controller
     {
        $request->validate([
         'catId' => 'required',
-        'slug' => 'required',
         'subCatName' => 'required',
         'description' => 'required',
         'image' => 'required',
@@ -59,14 +59,15 @@ class SubcategoryController extends Controller
         $subcategory->status = $request->status;
 
         $image = $request->file('image');
-        $imgCustomName = rand().'.'.$image.getClientOriginalExtension();
+        $imgCustomName = rand().'.'.$image->getClientOriginalExtension();
         $location = public_path('backend/subcategoryimages/'.$imgCustomName);
-        Image::make('image')->save($location);
+        Image::make($image)->save($location);
         $subcategory->image = $imgCustomName;
         $subcategory->save();
         return redirect()->route('subcategorymanage');
-        $subcategory-> save();
+    
     }
+
     
 
 
@@ -89,7 +90,10 @@ class SubcategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcat=subcategory::find($id);
+        $cat=Category::all();
+        return view("backend.pages.subcategory.editsubcategory",compact("subcat","cat"));
+
     }
 
     /**
@@ -101,8 +105,34 @@ class SubcategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        $subcategory->catId = $request->catId;
+        $subcategory->slug  = Str::slug($request->subCatName);
+        $subcategory->subCatName = $request->subCatName;
+        $subcategory->description = $request->description;
+        $subcategory->status = $request->status;
+        if(empty($request->image)){
+            $subcategory->update();
+            return redirect()->route('subcategorymanage');
+        }
+        else{
+
+        if(FILE::exists('backend/subcategoryimages/'.$subcategory->image)){
+            FILE::delete('backend/subcategoryimages/'.$subcategory->image);
+        }
+            $image1 = $request->file('image');
+            $imgCustomName = rand().'.'.$image1->getClientOriginalExtension();
+            $location = public_path('backend/subcategoryimages/'.$imgCustomName);
+            Image::make($image1)->save($location);
+            $subcategory->image = $imgCustomName;
+            $subcategory->update();
+            return redirect()->route('subcategorymanage');
+        
     }
+}
+    
+        
+
 
     /**
      * Remove the specified resource from storage.
@@ -112,6 +142,12 @@ class SubcategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subcat=subcategory::find($id);
+        if(FILE::exists('backend/subcategoryimages/'.$subcat->image)){
+            FILE::delete('backend/subcategoryimages/'.$subcat->image);
+        }
+        $subcat->delete();
+        return redirect()->route('subcategorymanage');
+
     }
 }

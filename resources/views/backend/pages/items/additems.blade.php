@@ -14,25 +14,26 @@
         <div class="row row-sm">
           <div class="col-sm-12">
               <div class="card p-3 shadow-base">
-                <form action="{{Route('subcategorystore')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{Route('items.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf  
                     <div class="row">
                         <div class="col-md-6">
+                            
                             <div class="form-group">
-                                <label for="catId">Select Category</label>
-                                <select class="form-control" type="text" placeholder="Enter Sub Category Name" name="catId">
-                                        <option value="">------Select Category------</option>
-                                    @foreach($category as $cat)
-                                        <option value="{{ $cat->id }}"> {{ $cat->name }} </option>
-                                    @endforeach
-                                </select>
+                                <label for="item_code">Items Code</label>
+                                <input class="form-control" type="text" placeholder="Enter Item Code Name" name="item_code" id="item_code" value="{{ old('item_code') }}">
+                                <span class="text-danger">
+                                @error('item_code')
+                                    {{$message}}
+                                @enderror
+                                </span>
                             </div>
 
                             <div class="form-group">
-                                <label for="subCatName">Sub Category Name</label>
-                                <input class="form-control" type="text" placeholder="Enter Sub-Category Name" name="subCatName" id="subCatName" value="{{ old('subCatName') }}">
+                                <label for="name">Items Name</label>
+                                <textarea placeholder="Enter Items Name" class="form-control" name="name" id="name" cols="30" rows="4">{{ old('name') }}</textarea>
                                 <span class="text-danger">
-                                @error('subCatName')
+                                @error('name')
                                     {{$message}}
                                 @enderror
                                 </span>
@@ -51,25 +52,27 @@
                     
                             <div class="col-md-6">
                             <div class="form-group">
-                                <label for="image">Sub-Category image</label>
+                                <label for="image">Items Pic</label>
                                 <input class="form-control" type="file"  name="image" id="image">
                                 <span class="text-danger">
-                                @error('catId')
+                                @error('image')
                                     {{$message}}
                                 @enderror
                                 </span>
                             </div>
                 
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <select class="form-control" name="status" id="status">
-                                    <option value="">-----Select Status-----</option>
-                                    <option value="1">Active</option>
-                                    <option value="2">Inactive</option>
-                                </select>
+                                <label for="gallery">Items Gallery Pics</label>
+                                <input class="form-control" type="file"  name="gallery[]" id="gallery" multiple>
+                                <span class="text-danger">
+                                @error('gallery')
+                                    {{$message}}
+                                @enderror
+                                </span>
                             </div>
+
                             <div class="form-group">
-                                <button class="form-control btn btn-info">Add Product</button>
+                                <button class="form-control btn btn-info">Add Items</button>
                             </div>
                         </div>
                     </div>
