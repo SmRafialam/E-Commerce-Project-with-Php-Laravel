@@ -21,9 +21,15 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
+Route::get('/check',function(){
+    return view('backend/apicheck');
+});
+
 Route::get('/admin',function(){
     return view('backend.dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
 
 Route::group(['prefix'=>'/admin'],function(){
 // for product
